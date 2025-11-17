@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E9EDC9;
+    background-image: url(./images/Gemini_Generated_Image_wt4iqrwt4iqrwt4i.png);
+}
+
+.main_div {
+
+    height: 80vh;
+    width: 93vw;
+    display: flex;
+    justify-content:space-around ;
+    gap:10px
+}
+h1{
+    color: #896644;
+}
+.carte{
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+}
+.conferece{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 400px;
+    background-image: url(./images/reception.jpg);
+    background-size: cover;
+    box-shadow: 0px 0px 20px 1px #070504;
+}
+.servers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 230px;
+    width: 270px;
+    background-image: url(./images/servers.jpg);
+    background-size: cover;
+    box-shadow: 0px 0px 20px 1px #070504;
+}
+.security{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     height: 230px;
+    width: 270px;
+    background-image: url(./images/security.jpg);
+    background-size: cover;
+    box-shadow: 0px 0px 20px 1px #070504;
+}
+.reception{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    width: 350px;
+    background-image: url(./images/reception\ 2.jpg);
+    background-size: cover;
+    box-shadow: 0px 0px 20px 1px #070504;
+}
+.staff{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 220px;
+    width:250px;
+    background-image: url(./images/staff.jpg);
+    background-size: cover;
+    box-shadow: 0px 0px 20px 1px #070504;
+}
+.vault{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 220px;
+    width: 270px;
+    background-image: url(./images/vault.jpg);
+    background-size: cover;
+    box-shadow: 0px 0px 20px 1px #070504;
+}
+.carte-divs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.members-container {
+    width: 30%;
+    padding-top: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    grid-column: 1/2;
+    border-radius: 10px;
+    background-image: url(./images/Gemini_Generated_Image_wt4iqrwt4iqrwt4i\ 222.png);
+    box-shadow: 0px 0px 20px 5px #070504;
+
+
+}
+
+
+.members-search {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+
+}
+
+
+
+.add-button {
+    font-size: larger;
+    width: 70%;
+    height: 33px;
+    background-color: #896644;
+    color: white;
+    border-radius: 15px;
+   
+    border: 0;
+}
+.rooms-buttons {
+    font-size: larger;
+    width: 40px;
+    height: 40px;
+    background-color: #896644;
+    color: white;
+    border-radius: 15px;
+   
+    border: 0;
+}
+.add-button:hover{
+    background-color:#b68b61 ;
+}
+.rooms-buttons:hover{
+    background-color:#b68b61 ;
+}
