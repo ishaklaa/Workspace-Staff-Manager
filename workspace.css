@@ -17,20 +17,23 @@ main {
     height: 80vh;
     width: 93vw;
     display: flex;
-    justify-content:space-around ;
-    gap:10px
+    justify-content: space-around;
+    gap: 10px
 }
-h1{
+
+h1 {
     color: #896644;
 }
-.carte{
+
+.carte {
     width: 70%;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    
+
 }
-.conferece{
+
+.conferece {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,7 +43,8 @@ h1{
     background-size: cover;
     box-shadow: 0px 0px 20px 1px #070504;
 }
-.servers{
+
+.servers {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,17 +54,19 @@ h1{
     background-size: cover;
     box-shadow: 0px 0px 20px 1px #070504;
 }
-.security{
+
+.security {
     display: flex;
     justify-content: center;
     align-items: center;
-     height: 230px;
+    height: 230px;
     width: 270px;
     background-image: url(./images/security.jpg);
     background-size: cover;
     box-shadow: 0px 0px 20px 1px #070504;
 }
-.reception{
+
+.reception {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,17 +76,19 @@ h1{
     background-size: cover;
     box-shadow: 0px 0px 20px 1px #070504;
 }
-.staff{
+
+.staff {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 220px;
-    width:250px;
+    width: 250px;
     background-image: url(./images/staff.jpg);
     background-size: cover;
     box-shadow: 0px 0px 20px 1px #070504;
 }
-.vault{
+
+.vault {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,7 +98,8 @@ h1{
     background-size: cover;
     box-shadow: 0px 0px 20px 1px #070504;
 }
-.carte-divs{
+
+.carte-divs {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -131,9 +140,10 @@ h1{
     background-color: #896644;
     color: white;
     border-radius: 15px;
-   
+
     border: 0;
 }
+
 .rooms-buttons {
     font-size: larger;
     width: 40px;
@@ -141,12 +151,127 @@ h1{
     background-color: #896644;
     color: white;
     border-radius: 15px;
-   
+
     border: 0;
 }
-.add-button:hover{
-    background-color:#b68b61 ;
+
+.add-button:hover {
+    background-color: #9b7753;
 }
-.rooms-buttons:hover{
-    background-color:#b68b61 ;
+
+.rooms-buttons:hover {
+    background-color: #9b7753;
 }
+
+.modal-ajout-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+
+}
+
+.modal-ajout {
+    background-image: url(./images/Gemini_Generated_Image_wt4iqrwt4iqrwt4i\ 222.png);
+    box-shadow: 0px 0px 20px 2px #070504;
+    border-radius: 10px;
+    height: 80vh;
+    width: 30vw;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 50px
+}
+
+.member-info-input {
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    border: 0;
+
+}
+
+.member-info {
+    font-size: 20px;
+    color: #664c32;
+}
+
+.member-image {
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.experience-button {
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: auto;
+    height: 33px;
+    background-color: #896644;
+    color: white;
+    border-radius: 15px;
+    border: 0;
+}
+
+.experience-button:hover {
+    background-color: #9b7753;
+}
+
+.modal-select-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+}
+
+.modal-select {
+    background-image: url(./images/Gemini_Generated_Image_wt4iqrwt4iqrwt4i\ 222.png);
+    box-shadow: 0px 0px 20px 2px #070504;
+    border-radius: 10px;
+    height: 50vh;
+    width: 30vw;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 50px
+}
+.select{
+    display: flex;
+    justify-content: center;
+}
+.select-heading{
+    font-size: 30px;
+    color: #664c32;
+}
+.modal-worker-container{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+}
+.modal-worker{
+    background-image: url(./images/Gemini_Generated_Image_wt4iqrwt4iqrwt4i\ 222.png);
+    box-shadow: 0px 0px 20px 2px #070504;
+    border-radius: 10px;
+    height: 50vh;
+    width: 30vw;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 50px
+}
+
