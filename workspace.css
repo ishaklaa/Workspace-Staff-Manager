@@ -10,12 +10,13 @@ main {
     align-items: center;
     background-color: #E9EDC9;
     background-image: url(./images/Gemini_Generated_Image_wt4iqrwt4iqrwt4i.png);
+    overflow-x: hidden;
 }
 
 .main_div {
 
-    height: 80vh;
-    width: 93vw;
+    height: 80%;
+    width: 93%;
     display: flex;
     justify-content: space-around;
     gap: 10px
@@ -245,15 +246,18 @@ h1 {
     padding: 30px;
     gap: 50px
 }
-.select{
+
+.select {
     display: flex;
     justify-content: center;
 }
-.select-heading{
+
+.select-heading {
     font-size: 30px;
     color: #664c32;
 }
-.modal-worker-container{
+
+.modal-worker-container {
     position: fixed;
     height: 100%;
     width: 100%;
@@ -262,7 +266,8 @@ h1 {
     align-items: center;
     backdrop-filter: blur(3px);
 }
-.modal-worker{
+
+.modal-worker {
     background-image: url(./images/Gemini_Generated_Image_wt4iqrwt4iqrwt4i\ 222.png);
     box-shadow: 0px 0px 20px 2px #070504;
     border-radius: 10px;
@@ -275,3 +280,141 @@ h1 {
     gap: 50px
 }
 
+@media (max-width: 1024px) {
+
+    .staff {
+        height: 154px;
+        width: 175px;
+    }
+
+    .conferece {
+        height: 140px;
+        width: 280px;
+    }
+
+    .servers {
+        height: 161px;
+        width: 189px;
+    }
+
+    .security {
+        height: 161px;
+        width: 189px;
+    }
+
+    .reception {
+        height: 245px;
+        width: 245px;
+    }
+
+    .vault {
+        height: 154px;
+        width: 189px;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+    .main_div {
+
+        height: 70%;
+
+
+    }
+
+    .staff {
+        height: 110px;
+        width: 125px;
+    }
+
+    .conferece {
+        height: 100px;
+        width: 200px;
+    }
+
+    .servers {
+        height: 115px;
+        width: 135px;
+    }
+
+    .security {
+        height: 115px;
+        width: 135px;
+    }
+
+    .reception {
+        height: 175px;
+        width: 175px;
+    }
+
+    .vault {
+        height: 110px;
+        width: 135px;
+    }
+
+
+}
+
+@media (max-width: 480px) {
+
+    .members-container {
+        width: 70%;
+        padding: 20px;
+    }
+
+    .main_div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .carte {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+    }
+
+
+    .carte-divs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .staff {
+        height: 220px;
+        width: 250px;
+    }
+
+    .conferece {
+        height: 140px;
+        width: 280px;
+    }
+
+    .servers {
+        height: 230px;
+        width: 270px;
+    }
+
+    .security {
+        height: 230px;
+        width: 270px;
+    }
+
+    .reception {
+        height: 245px;
+        width: 245px;
+    }
+
+    .vault {
+        height: 220px;
+        width: 270px;
+    }
+
+
+}
