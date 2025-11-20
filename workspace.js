@@ -69,7 +69,6 @@ function numberCheck() {
     }
     else {
         return true
-
     }
 }
 function regexCheck() {
