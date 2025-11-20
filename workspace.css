@@ -222,15 +222,16 @@ h1 {
 
 .modal-ajout-buttons {
     font-size: 15px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     height: 33px;
-    width: 30%;
+    width: 32%;
     background-color: #896644;
     color: white;
     border-radius: 15px;
     border: 0;
 }
+
 
 .modal-ajout-buttons:hover {
     background-color: #9b7753;

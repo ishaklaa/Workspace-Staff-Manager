@@ -60,14 +60,24 @@
                     <input type="text" class="member-info-input" id="memberNameInput">
                     <span id="nameError" class="validErr"></span>
                 </div>
+                <div class="member-name">
+                    <label class="member-info">Email:</label>
+                    <input type="text" class="member-info-input" id="memberEmilInput">
+                    <span id="EmailError" class="validErr"></span>
+                </div>
+                <div class="member-name">
+                    <label class="member-info">Phone number:</label>
+                    <input type="text" class="member-info-input" id="memberNumberInput">
+                    <span id="NumberError" class="validErr"></span>
+                </div>
                 <div class="member-role">
                     <label class="member-info">Role:</label>
-                    <select name="role-select" id="" class="member-info-input">
-                        <option value="">Récepionniste</option>
-                        <option value="">Technicien iT</option>
-                        <option value="">Agent de sécurité</option>
-                        <option value="">Manager</option>
-                        <option value="">Néttoyage</option>
+                    <select name="role-select" id="currentRole" class="member-info-input">
+                        <option >Récepionniste</option>
+                        <option >Technicien iT</option>
+                        <option >Agent de sécurité</option>
+                        <option >Manager</option>
+                        <option >Néttoyage</option>
                     </select>
                     <span id="roleError" class="validErr"></span>
                 </div>
@@ -76,7 +86,7 @@
                     <input type="text" class="member-info-input" id="memberUrlinput" type="url">
                     <span id="urlError" class="validErr"></span>
                 </div>
-                <div class="member-image">
+                <div class="member-image" id="memberImage">
                     <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="">
                 </div>
                 <div  id="experiencesContainer">
@@ -84,7 +94,7 @@
                 </div>
                 
                 <div>
-                    <button class="modal-ajout-buttons" id="expButton">
+                    <button type="button" class="modal-ajout-buttons" id="expButton">
                         add experiences
                     </button>
                     <input class="modal-ajout-buttons" type="submit">
