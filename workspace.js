@@ -21,7 +21,7 @@ let currentRole = document.getElementById("currentRole")
 let memberImage = document.getElementById("memberImage")
 let dateStart
 let dateEnd
-
+let memberCompany
 const nameRegex = /^[A-Za-z\s]+$/;
 const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})(\/.*)?$/;
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -37,6 +37,7 @@ function closeModal(modal) {
 }
 function nameCheck() {
     if (!nameRegex.test(namee.value)) {
+        errorNameSpan.textContent = "invalid name"
         return false
     }
     else {
@@ -45,6 +46,7 @@ function nameCheck() {
 }
 function urlCheck() {
     if (!urlRegex.test(url.value)) {
+        errorUrlSpan.textContent = "invalid Url"
         return false
     }
     else {
@@ -53,6 +55,7 @@ function urlCheck() {
 }
 function emailCheck() {
     if (!emailRegex.test(Email.value)) {
+        errorEmailSpan.textContent = "invalid email"
         return false
     }
     else {
@@ -61,6 +64,7 @@ function emailCheck() {
 }
 function numberCheck() {
     if (!numberRegex.test(PNumber.value)) {
+        errorNumberSpan.textContent = "invalid number"
         return false
     }
     else {
@@ -69,18 +73,11 @@ function numberCheck() {
     }
 }
 function regexCheck() {
-    if (!nameCheck()) {
-        errorNameSpan.textContent = "invalid name"
+    if (!nameCheck() || !urlCheck() || !emailCheck() || !numberCheck()) {
+        return false
+    }
+    else {
         return true
-    }
-    if (!urlCheck()) {
-        errorUrlSpan.textContent = "invalid Url"
-    }
-    if (!emailCheck()) {
-        errorEmailSpan.textContent = "invalid email"
-    }
-    if (!numberCheck()) {
-        errorNumberSpan.textContent = "invalid number"
     }
 
 
@@ -95,7 +92,7 @@ function experienceDiv() {
     template.className = "experiences-container"
     template.innerHTML = `
                     <label class="member-info">Company:</label>
-                    <input name="company" type="text" class="member-info-input" id="memberCompanyRole">
+                    <input name="company" type="text" class="member-info-input" id="memberCompany">
                     <label class="member-info">Experience:</label>
                     <select name="role" id="memberCompanyRole" class="member-info-input">
                         <option >Récepionniste</option>
@@ -119,6 +116,7 @@ function experienceDiv() {
     dateEnd = document.getElementById("dateEnd")
     errorStartSpan = document.querySelectorAll("#dateStartErr")
     expsContainer = document.querySelectorAll(".experiences-container")
+    memberCompany = document.getElementById("memberCompany")
 
 }
 function saveEmployesExp() {
@@ -148,10 +146,17 @@ function saveEmployesExp() {
 function clearInputs() {
     currentRole.value = ""
     namee.value = ""
-    memberCompanyRole.value = ""
+    Email.value = ""
+    PNumber.value = ""
+    errorNameSpan.textContent = ""
+    errorRoleSpan.textContent = ""
+    errorUrlSpan.textContent = ""
+    errorEmailSpan.textContent = ""
+    errorNumberSpan.textContent = ""
+    // memberCompanyRole.value = ""
     url.value = ""
     expsContainer.forEach((div) => {
-        let inputs = div.querySelectorAll('#memberCompanyRole');
+        let inputs = div.querySelectorAll('.member-info-input');
         inputs.forEach((input) => {
             input.value = ""
         })
@@ -171,20 +176,21 @@ function appendImage2() {
     memberImage.innerHTML = template
 }
 function dateCheck() {
-    let start = new Date(dateStart.value)
-    let end = new Date(dateEnd.value)
-    if (start > end) {
-        errorStartSpan.forEach((err) => {
-            err.textContent = "invalid date"
-        })
-        return true
+    if (dateStart && dateEnd) {
+        let start = new Date(dateStart.value)
+        let end = new Date(dateEnd.value)
+        if (start > end) {
+            errorStartSpan.forEach((err) => {
+                err.textContent = "invalid date"
+            })
+            return false
+        }
+        else {
+            return true
+        }
     }
-    else {
-        errorStartSpan.forEach((err) => {
-            err.textContent = ""
-        })
-        return false
-    }
+    else return
+
 }
 function appInit() {
     addButton.addEventListener("click", () => {
@@ -203,10 +209,19 @@ function appInit() {
         numberCheck()
         regexCheck()
         dateCheck()
-        if (!regexCheck() && !dateCheck()) {
-            saveEmployesExp()
-            appendImage2()
-            clearInputs()
+        if (memberCompany) {
+            if (regexCheck() && dateCheck()) {
+                saveEmployesExp()
+                appendImage2()
+                clearInputs()
+            }
+        }
+        else {
+            if (regexCheck()) {
+                saveEmployesExp()
+                appendImage2()
+                clearInputs()
+            }
         }
         console.log(employés)
     })
