@@ -18,7 +18,7 @@
 
                 <div class="members-search">
 
-                    <button class="add-button">+</button>
+                    <button class="add-button" id="addButton">+</button>
 
                 </div>
             </div>
@@ -53,44 +53,62 @@
 
             </div>
         </div>
-        <div class="modal-ajout-container ">
-            <form class="modal-ajout">
+        <div class="modal-ajout-container " id="addModal">
+            <form class="modal-ajout" id="addWorkerForm">
                 <div class="member-name">
                     <label class="member-info">Name:</label>
-                    <input type="text" class="member-info-input">
+                    <input type="text" class="member-info-input" id="memberNameInput">
+                    <span id="nameError" class="validErr"></span>
                 </div>
                 <div class="member-role">
                     <label class="member-info">Role:</label>
-                    <input type="text" class="member-info-input">
+                    <select name="role-select" id="" class="member-info-input">
+                        <option value="">Récepionniste</option>
+                        <option value="">Technicien iT</option>
+                        <option value="">Agent de sécurité</option>
+                        <option value="">Manager</option>
+                        <option value="">Néttoyage</option>
+                    </select>
+                    <span id="roleError" class="validErr"></span>
                 </div>
                 <div class="member-url">
                     <label class="member-info">Photo(URL):</label>
-                    <input type="text" class="member-info-input">
+                    <input type="text" class="member-info-input" id="memberUrlinput" type="url">
+                    <span id="urlError" class="validErr"></span>
                 </div>
                 <div class="member-image">
-
+                    <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="">
                 </div>
+                <div  id="experiencesContainer">
+                   
+                </div>
+                
                 <div>
-                    <button class="experience-button">
+                    <button class="modal-ajout-buttons" id="expButton">
                         add experiences
                     </button>
-                    <button class="experience-button">
-                        submit
+                    <input class="modal-ajout-buttons" type="submit">
+
+                    <button class="modal-ajout-buttons" id="closeModal">
+                        close
                     </button>
                 </div>
+                
+
+
             </form>
         </div>
         <div class="modal-worker-container">
             <div class="modal-worker">
-                
+
 
             </div>
         </div>
 
-        
+
         <div class="modal-select-container">
             <div class="modal-select">
-                <div class="select" >
+                <div class="select">
                     <h2 class="select-heading">select worker to assign</h2>
                 </div>
 
@@ -98,7 +116,7 @@
         </div>
 
     </main>
-
+    <script src="./workspace.js"></script>
 </body>
 
 </html>
