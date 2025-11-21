@@ -45,17 +45,10 @@ function openModal(modal) {
 }
 function closeModal(modal) {
     modal.style.display = "none"
-    modalWorkerContainer
+
 }
-function closeMemModal(modal, nodal) {
-    modal.style.display = "none"
-    if (nodal.children) {
-        const childrenArray = Array.from(nodal.children)
-        childrenArray.forEach(child => {
-            child.remove();
-        })
-    }
-}
+
+
 
 function nameCheck() {
     if (!nameRegex.test(namee.value)) {
@@ -277,22 +270,26 @@ function memberInContainer() {
                  </div>   
                 `
         if (employés[id - 1].experiences.length > 0) {
+            template += `<label class="member-info">experience</label>`
             for (let i = 0; i < employés[id - 1].experiences.length; i++) {
-                template += `<div>
-                    <label class="member-info">experience</label>
-                    <h4>${employés[id - 1].experiences[i].company}</h4>
-                    <h4>${employés[id - 1].experiences[i].role}</h4>
-                    <h4>${employés[id - 1].experiences[i].datestart}</h4>
-                    <h4>${employés[id - 1].experiences[i].dateend}</h4>
+                template += `<div class="experiences-div">
+                    
+                    <h4>Company: ${employés[id - 1].experiences[i].company}</h4>
+                    <h4>Role: ${employés[id - 1].experiences[i].role}</h4>
+                    <h4>Start: ${employés[id - 1].experiences[i].datestart}</h4>
+                    <h4>End: ${employés[id - 1].experiences[i].dateend}</h4>
                 </div>
-                <button type="button" class="modal-ajout-buttons" id="closeMemberModal" onclick="closeModal(modalWorkerContainer)">
-                        close
-                    </button>
+                
                 
                 `
-                par.innerHTML = template
-                modalWorker.replaceChildren(par)
+
+
             }
+            template += `<button type="button" class="modal-ajout-buttons" id="closeMemberModal" onclick="closeModal(modalWorkerContainer)">
+                        close
+                    </button>`
+            par.innerHTML = template
+            modalWorker.replaceChildren(par)
         }
         else {
             template += `<button type="button" class="modal-ajout-buttons" id="closeMemberModal" onclick="closeModal(modalWorkerContainer)">
@@ -302,35 +299,9 @@ function memberInContainer() {
             par.innerHTML = template
             modalWorker.replaceChildren(par)
         }
-        // const closeMemberModal = document.getElementById("closeMemberModal")
-        // closeMemberModal.addEventListener("click", () => {
-        //     closeModal(modalWorkerContainer)
-        // })
-        
-
-
-
     })
-
-
-
-
-
 }
 
-
-// function memberFullinfos() {
-//     member = document.querySelectorAll(".member-in-container")
-//     const par = document.createElement('div')
-
-//     member.forEach((mem) => {
-
-//         mem.
-
-
-
-//     })
-// }
 function appInit() {
     addButton.addEventListener("click", () => {
         openModal(addModal)
@@ -351,7 +322,6 @@ function appInit() {
         if (memberCompany) {
             if (regexCheck() && dateCheck()) {
                 saveEmployesExp()
-                saveData(employés)
                 count++
                 appendImage2()
                 clearInputs()
@@ -362,7 +332,6 @@ function appInit() {
         else {
             if (regexCheck()) {
                 saveEmployesExp()
-                saveData(employés)
                 count++
                 appendImage2()
                 clearInputs()
@@ -371,8 +340,6 @@ function appInit() {
             }
         }
         console.log(employés)
-
-
     })
     closeAddModal.addEventListener("click", () => {
         closeModal(addModal)
