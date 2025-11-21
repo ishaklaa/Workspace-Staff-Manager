@@ -2,6 +2,7 @@ const addModal = document.getElementById("addModal")
 const addButton = document.getElementById("addButton")
 const expButton = document.getElementById("expButton")
 const closeAddModal = document.getElementById("closeModal")
+
 const experiencesContainer = document.getElementById("experiencesContainer")
 const addWorkerForm = document.getElementById("addWorkerForm")
 const errorNameSpan = document.getElementById("nameError")
@@ -22,12 +23,20 @@ let memberImage = document.getElementById("memberImage")
 let dateStart
 let dateEnd
 let memberCompany
+let membersContainer = document.getElementById("membersContainer")
+let modalWorker = document.getElementById("modalWorker")
+let modalWorkerContainer = document.getElementById("modalWorkerContainer")
+
+
+
+
 const nameRegex = /^[A-Za-z\s]+$/;
 const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})(\/.*)?$/;
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 const numberRegex = /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/
 
 let employés = []
+let count = 1
 
 function openModal(modal) {
     modal.style.display = "flex"
@@ -35,6 +44,7 @@ function openModal(modal) {
 function closeModal(modal) {
     modal.style.display = "none"
 }
+
 function nameCheck() {
     if (!nameRegex.test(namee.value)) {
         errorNameSpan.textContent = "invalid name"
@@ -81,10 +91,13 @@ function regexCheck() {
 
 
 
-
 }
 function saveData(data) {
-    localStorage.setItem("data", JSON.stringify(data))
+    localStorage.setItem("employés", JSON.stringify(data))
+}
+function getData() {
+    let dataa = localStorage.getItem("employés")
+    employés = dataa ? JSON.parse(dataa) : employés = []
 }
 function experienceDiv() {
     let template = document.createElement("div")
@@ -101,10 +114,10 @@ function experienceDiv() {
                         <option >Néttoyage</option>
                     </select>
                     <label class="member-info">start:</label>
-                    <input name="date-start" type="date" class="member-info-input" id="dateStart">
+                    <input name="datestart" type="date" class="member-info-input" id="dateStart">
                     <span id="dateStartErr" class="validErr"></span>
                     <label class="member-info">end:</label>
-                    <input name="date-end" type="date" class="member-info-input" id="dateEnd">
+                    <input name="dateend" type="date" class="member-info-input" id="dateEnd">
                     <span id="dateStartErr" class="validErr"></span>
                     <button class="modal-ajout-buttons" onclick="return this.parentNode.remove()" >close</button>
 
@@ -120,13 +133,21 @@ function experienceDiv() {
 }
 function saveEmployesExp() {
     let employésInfos = {
+        id: "",
         namee: "",
         role: "",
-        url: ""
+        url: "",
+        number: "",
+        email: ""
+
+
     }
     employésInfos.namee = namee.value
     employésInfos.role = currentRole.value
     employésInfos.url = url.value
+    employésInfos.number = PNumber.value
+    employésInfos.email = Email.value
+    employésInfos.id = count
     employés.push(employésInfos)
     let experiences = []
 
@@ -152,6 +173,9 @@ function clearInputs() {
     errorUrlSpan.textContent = ""
     errorEmailSpan.textContent = ""
     errorNumberSpan.textContent = ""
+    // errorStartSpan.forEach((err) => {
+    //     err.textContent = ""
+    // })
     // memberCompanyRole.value = ""
     url.value = ""
     expsContainer.forEach((div) => {
@@ -175,10 +199,21 @@ function appendImage2() {
     memberImage.innerHTML = template
 }
 function dateCheck() {
-    if (dateStart && dateEnd) {
-        let start = new Date(dateStart.value)
-        let end = new Date(dateEnd.value)
-        if (start > end) {
+    if (memberCompany) {
+        if (dateStart.value && dateEnd.value) {
+            let start = new Date(dateStart.value)
+            let end = new Date(dateEnd.value)
+            if (start > end) {
+                errorStartSpan.forEach((err) => {
+                    err.textContent = "invalid date"
+                })
+                return false
+            }
+            else {
+                return true
+            }
+        }
+        else if (!dateStart.value || !dateEnd.value) {
             errorStartSpan.forEach((err) => {
                 err.textContent = "invalid date"
             })
@@ -188,9 +223,99 @@ function dateCheck() {
             return true
         }
     }
-    else return
+    else {
+        return true
+    }
 
 }
+let member
+function memberInContainer() {
+    let template = document.createElement('div')
+    template.className = "member-in-container"
+    template.setAttribute("id", `${employés[employés.length - 1].id}`)
+    template.innerHTML = `<img src="${employés[employés.length - 1].url}" alt="" class="member-img-in-container">
+                    <div class="member-name-in-container">
+                        <h3 class="member-info">${employés[employés.length - 1].namee}</h3>
+                        <h4>${employés[employés.length - 1].role}</h4>
+                    </div>`
+
+
+    membersContainer.appendChild(template)
+    member = document.querySelector(".member-in-container")
+    member.addEventListener('click', () => {
+        const par = document.createElement('div')
+        openModal(modalWorkerContainer)
+        let id = member.getAttribute("id")
+        par.className = "member-full-infos"
+        template = `<div>
+                    <img src="${employés[id - 1].url}" alt="" class="member-img-in-container">
+                </div>
+                <div>
+                    <h3 class="member-info">Name:</h3>
+                    <h4>${employés[id - 1].namee}</h4>
+                </div>
+                <div>
+                    <label class="member-info">Role:</label>
+                    <h4>${employés[id - 1].role}</h4>
+                </div>
+                <div>
+                    <label class="member-info">Email</label>
+                    <h4>${employés[id - 1].email}</h4>
+                </div>
+                <div>
+                    <label class="member-info">Phone:</label>
+                    <h4>${employés[id - 1].number}</h4>
+                 </div>   
+                `
+        if (employés[id - 1].experiences.length > 0) {
+            for (let i = 0; i < employés[id - 1].experiences.length; i++) {
+                template += `<div>
+                    <label class="member-info">experience</label>
+                    <h4>${employés[id - 1].experiences[i].company}</h4>
+                    <h4>${employés[id - 1].experiences[i].role}</h4>
+                    <h4>${employés[id - 1].experiences[i].datestart}</h4>
+                    <h4>${employés[id - 1].experiences[i].dateend}</h4>
+                </div>
+                <button type="button" class="modal-ajout-buttons" id="closeMemberModal" onclick="()=>{closeModal(modalWorkerContainer)}">
+                        close
+                    </button>
+                
+                `
+            }
+        }
+        else {
+            template += `<button type="button" class="modal-ajout-buttons" id="closeMemberModal" onclick="closeModal(modalWorkerContainer)">
+                        close
+                    </button>
+                `
+        }
+        // const closeMemberModal = document.getElementById("closeMemberModal")
+        // closeMemberModal.addEventListener("click", () => {
+        //     closeModal(modalWorkerContainer)
+        // })
+        par.innerHTML = template
+        modalWorker.appendChild(par)
+
+
+
+    })
+
+
+}
+
+
+// function memberFullinfos() {
+//     member = document.querySelectorAll(".member-in-container")
+//     const par = document.createElement('div')
+
+//     member.forEach((mem) => {
+
+//         mem.
+
+
+
+//     })
+// }
 function appInit() {
     addButton.addEventListener("click", () => {
         openModal(addModal)
@@ -211,21 +336,32 @@ function appInit() {
         if (memberCompany) {
             if (regexCheck() && dateCheck()) {
                 saveEmployesExp()
+                saveData(employés)
+                count++
                 appendImage2()
                 clearInputs()
+                memberInContainer()
+                closeModal(addModal)
             }
         }
         else {
             if (regexCheck()) {
                 saveEmployesExp()
+                saveData(employés)
+                count++
                 appendImage2()
                 clearInputs()
+                memberInContainer()
+                closeModal(addModal)
             }
         }
         console.log(employés)
+
+
     })
     closeAddModal.addEventListener("click", () => {
         closeModal(addModal)
     })
+    // memberFullinfos()
 }
 appInit()
