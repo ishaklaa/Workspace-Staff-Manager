@@ -378,17 +378,17 @@ function confereceRoom() {
                     let template = document.createElement('div')
                     template.className = "member-in-container"
                     template.setAttribute("id", `${emp.id}`)
-                    template.innerHTML = `<img src="${emp.url}" alt="" class="member-img-in-container">
+                    template.innerHTML = `<img src="${emp.url}" alt="" class="member-img-in-room">
                     <div class="member-name-in-container">
-                        <h4 class="member-info">${emp.namee}</h4>
-                        <h5>${emp.role}</h5>
+                        <label class="member-infoo">${emp.namee}</label>
+                        <h4 class="member-infoo">${emp.role}</h4>
                     </div>`
                     console.log(template)
                     modalSelect.appendChild(template)
                     template.addEventListener('click', () => {
                         console.log('hello')
                         emp.inRomme = true
-
+                        
                         let room = document.getElementById(btn.parentElement.id)
                         room.appendChild(template)
                         const child = document.getElementById(emp.id)
@@ -415,9 +415,6 @@ function confereceRoom() {
         })
     })
 }
-
-
-
 function appInit() {
     addButton.addEventListener("click", () => {
         openModal(addModal)
@@ -429,6 +426,7 @@ function appInit() {
     })
     addWorkerForm.addEventListener("submit", (e) => {
         e.preventDefault()
+
         nameCheck()
         urlCheck()
         emailCheck()

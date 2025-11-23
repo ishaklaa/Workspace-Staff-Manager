@@ -45,7 +45,7 @@ h1 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    /* padding: 10px; */
+
     align-items: center;
     height: 200px;
     width: 400px;
@@ -60,7 +60,7 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    /* padding: 10px; */
+
     height: 230px;
     width: 270px;
     background-image: url(./images/servers.jpg);
@@ -74,7 +74,7 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    /* padding: 10px; */
+
     height: 230px;
     width: 270px;
     background-image: url(./images/security.jpg);
@@ -88,7 +88,7 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    /* padding: 10px; */
+
     height: 350px;
     width: 350px;
     background-image: url(./images/reception\ 2.jpg);
@@ -102,7 +102,7 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    /* padding: 10px; */
+
     height: 220px;
     width: 250px;
     background-image: url(./images/staff.jpg);
@@ -281,7 +281,7 @@ h1 {
     display: flex;
     flex-direction: column;
     padding: 30px;
-    gap: 50px
+    gap: 10px
 }
 
 .select {
@@ -320,13 +320,16 @@ h1 {
 .member-in-container {
     background-color: #98724ceb;
     border-radius: 10px;
-    width: 50%;
     border: 0;
     display: flex;
     justify-content: space-around;
-    padding: 20px;
-    gap: 10px;
-    margin-bottom: 20px;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    gap: 5px;
+    margin-bottom: 10px;
 }
 
 .member-name-in-container {
@@ -335,8 +338,8 @@ h1 {
 }
 
 .member-img-in-container {
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
 }
 
@@ -350,27 +353,49 @@ h1 {
     margin-top: 20px;
 }
 
-.member-in-room {
-    background-color: #98724ceb;
-    border-radius: 10px;
-    width: 40%;
-    height: 30%;
-    border: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px;
-    gap: 10px;
-    margin-bottom: 20px;
+.member-info {
+    font-size: 20px;
+    color: #664c32;
 }
 
+.member-infoo {
+    font-size: 15px;
+}
+
+
+
 .member-img-in-room {
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
 }
 
 @media (max-width: 1024px) {
+
+
+
+    .member-infoo {
+        font-size: 15px;
+    }
+
+    .member-img-in-room {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        display: none;
+    }
+
+    .modal-select {
+        width: 50%;
+    }
+
+    .modal-ajout {
+        width: 50%;
+    }
+
+    .modal-worker {
+        width: 50%;
+    }
 
     .staff {
 
@@ -411,8 +436,35 @@ h1 {
 }
 
 @media (max-width: 768px) {
+
+
+    .member-infoo {
+        font-size: 10px;
+        
+    }
+
+    .member-img-in-room {
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        display: none;
+        
+    }
+
     .main_div {
         height: 70%;
+    }
+
+    .modal-select {
+        width: 50%;
+    }
+
+    .modal-ajout {
+        width: 50%;
+    }
+
+    .modal-worker {
+        width: 50%;
     }
 
     .staff {
@@ -449,8 +501,17 @@ h1 {
 }
 
 @media (max-width: 480px) {
+    .member-infoo {
+        font-size: 15px;
+    }
+    .member-img-in-room {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
     .members-container {
-        width: 100%;
+        width: 80%;
         height: 400px;
         padding-top: 30px;
     }
