@@ -1,5 +1,6 @@
 
 
+
 const addModal = document.getElementById("addModal")
 const addButton = document.getElementById("addButton")
 const expButton = document.getElementById("expButton")
@@ -18,6 +19,13 @@ const namee = document.getElementById("memberNameInput")
 const url = document.getElementById("memberUrlinput")
 const Email = document.getElementById('memberEmilInput')
 const PNumber = document.getElementById('memberNumberInput')
+const roomButton = document.querySelectorAll("#roomButton")
+
+const modalSelect = document.getElementById("modalSelect")
+const modalSelectContainer = document.getElementById("modalSelectContainer")
+
+
+
 let expsContainer = document.querySelectorAll(".experiences-container")
 // let ExperienceRole = document.querySelectorAll("#ExperienceRole")
 let currentRole = document.getElementById("currentRole")
@@ -28,7 +36,7 @@ let memberCompany
 let membersContainer = document.getElementById("membersContainer")
 let modalWorker = document.getElementById("modalWorker")
 let modalWorkerContainer = document.getElementById("modalWorkerContainer")
-
+let closeMelectModal = document.getElementById("closeMelectModal")
 
 
 
@@ -47,9 +55,6 @@ function closeModal(modal) {
     modal.style.display = "none"
 
 }
-
-
-
 function nameCheck() {
     if (!nameRegex.test(namee.value)) {
         errorNameSpan.textContent = "invalid name"
@@ -117,6 +122,7 @@ function experienceDiv() {
                         <option >Agent de sécurité</option>
                         <option >Manager</option>
                         <option >Néttoyage</option>
+                        <option >autre</option>
                     </select>
                     <label class="member-info">start:</label>
                     <input name="datestart" type="date" class="member-info-input" id="dateStart">
@@ -138,14 +144,13 @@ function experienceDiv() {
 }
 function saveEmployesExp() {
     let employésInfos = {
+        inRomme: false,
         id: "",
         namee: "",
         role: "",
         url: "",
         number: "",
         email: ""
-
-
     }
     employésInfos.namee = namee.value
     employésInfos.role = currentRole.value
@@ -235,9 +240,10 @@ function dateCheck() {
 }
 let member
 function memberInContainer() {
+    
     let template = document.createElement('div')
     template.className = "member-in-container"
-    template.setAttribute("id", `${employés[employés.length - 1].id}`)
+    template.setAttribute("id", `${count - 1}`)
     template.innerHTML = `<img src="${employés[employés.length - 1].url}" alt="" class="member-img-in-container">
                     <div class="member-name-in-container">
                         <h3 class="member-info">${employés[employés.length - 1].namee}</h3>
@@ -253,7 +259,7 @@ function memberInContainer() {
                     <img src="${employés[id - 1].url}" alt="" class="member-img-in-container">
                 </div>
                 <div>
-                    <h3 class="member-info">Name:</h3>
+                    <label class="member-info">Name:</label>
                     <h4>${employés[id - 1].namee}</h4>
                 </div>
                 <div>
@@ -279,11 +285,8 @@ function memberInContainer() {
                     <h4>Start: ${employés[id - 1].experiences[i].datestart}</h4>
                     <h4>End: ${employés[id - 1].experiences[i].dateend}</h4>
                 </div>
-                
-                
+                                
                 `
-
-
             }
             template += `<button type="button" class="modal-ajout-buttons" id="closeMemberModal" onclick="closeModal(modalWorkerContainer)">
                         close
@@ -301,6 +304,110 @@ function memberInContainer() {
         }
     })
 }
+function rooms(room) {
+    const accessToRooms = {
+        "Conference": [
+            "Récepionniste",
+            "Technicien iT",
+            "Agent de sécurité",
+            "Néttoyage",
+            "Manager",
+            "autre"
+        ],
+        "Archives": [
+            "Récepionniste",
+            "Technicien iT",
+            "Agent de sécurité",
+            "Manager",
+            "autre"
+        ],
+        "Staff": [
+            "Récepionniste",
+            "Technicien iT",
+            "Agent de sécurité",
+            "Néttoyage",
+            "Manager",
+            "autre"
+        ],
+        "Reception": [
+            "Néttoyage",
+            "Récepionniste",
+            "Manager"
+        ],
+        "Security": [
+            "Agent de sécurité",
+            "Manager",
+            "Néttoyage"
+        ],
+        "Server": [
+            "Technicien iT",
+            "Manager",
+            "Néttoyage"
+        ]
+    }
+    const roomWhereIam = accessToRooms[room]
+    return roomWhereIam
+}
+
+function confereceRoom() {
+    roomButton.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modalSelect.innerHTML = ""
+            modalSelect.innerHTML = `<div class="select" >
+                    <h2 class="select-heading">select worker to assign</h2>
+                </div>`
+
+            openModal(modalSelectContainer)
+            let newArray = employés.filter(emp => {
+                return rooms(btn.parentElement.id).includes(emp.role)
+            })
+            console.log(newArray)
+
+            newArray.forEach((emp) => {
+                if (!emp.inRomme) {
+                    console.log(emp)
+                    let template = document.createElement('div')
+                    template.className = "member-in-container"
+                    template.setAttribute("id", `${emp.id}`)
+                    template.innerHTML = `<img src="${emp.url}" alt="" class="member-img-in-container">
+                    <div class="member-name-in-container">
+                        <h4 class="member-info">${emp.namee}</h4>
+                        <h5>${emp.role}</h5>
+                    </div>`
+                    console.log(template)
+                    modalSelect.appendChild(template)
+                    template.addEventListener('click', () => {
+                        console.log('hello')
+                        emp.inRomme = true
+                       
+                        let room = document.getElementById(btn.parentElement.id)
+                        room.appendChild(template)
+                        const child = document.getElementById(emp.id)
+                        membersContainer.removeChild(child)
+
+
+                        template.addEventListener('click',()=>{
+                            emp.inRomme = false
+                            modalSelect.appendChild(template)
+                            membersContainer.appendChild(child)
+                        })
+                    
+                    })
+
+
+                }
+
+            })
+            let closee = document.createElement('div')
+            closee.innerHTML = `<button type="button" class="modal-ajout-buttons" id="closeMelectModal" onclick="closeModal(modalSelectContainer)">
+                        close
+                    </button>`
+            modalSelect.appendChild(closee)
+        })
+    })
+}
+
+
 
 function appInit() {
     addButton.addEventListener("click", () => {
@@ -344,6 +451,7 @@ function appInit() {
     closeAddModal.addEventListener("click", () => {
         closeModal(addModal)
     })
+    confereceRoom()
     // memberFullinfos()
 }
 appInit()

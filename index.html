@@ -13,42 +13,37 @@
         <div class="main_div">
 
             <div class="members-container" id="membersContainer">
-
                 <h1>EMPLOYES</h1>
-
                 <div class="members-search">
-
                     <button class="add-button" id="addButton">+</button>
-
                 </div>
-
             </div>
             <div class="carte">
                 <div class="carte-divs">
-                    <div class="conferece">
-                        <button class="conferece-button rooms-buttons">+</button>
+                    <div class="conferece" id="Conference">
+                        <button class="rooms-buttons" id="roomButton">+</button>
                     </div>
-                    <div class="reception">
-                        <button class="reception-button rooms-buttons">+</button>
+                    <div class="reception" id="Reception">
+                        <button class="rooms-buttons" id="roomButton">+</button>
                     </div>
 
                 </div>
                 <div class="carte-divs">
-                    <div class="servers">
-                        <button class="servers-button rooms-buttons">+</button>
+                    <div class="servers" id="Server" >
+                        <button class="rooms-buttons" id="roomButton">+</button>
                     </div>
-                    <div class="staff">
-                        <button class="staff-button rooms-buttons">+</button>
+                    <div class="staff" id="Staff">
+                        <button class="rooms-buttons" id="roomButton">+</button>
                     </div>
 
 
                 </div>
                 <div class="carte-divs">
-                    <div class="security">
-                        <button class="security-button rooms-buttons">+</button>
+                    <div class="security" id="Security">
+                        <button class="rooms-buttons" id="roomButton">+</button>
                     </div>
-                    <div class="vault">
-                        <button class="vault-button rooms-buttons">+</button>
+                    <div class="vault" id="Archives">
+                        <button class="rooms-buttons" id="roomButton">+</button>
                     </div>
                 </div>
 
@@ -63,12 +58,12 @@
                 </div>
                 <div class="member-name">
                     <label class="member-info">Email:</label>
-                    <input type="text" class="member-info-input" id="memberEmilInput">
+                    <input type="email" class="member-info-input" id="memberEmilInput">
                     <span id="EmailError" class="validErr"></span>
                 </div>
                 <div class="member-name">
                     <label class="member-info">Phone number:</label>
-                    <input type="text" class="member-info-input" id="memberNumberInput">
+                    <input type="tel" class="member-info-input" id="memberNumberInput">
                     <span id="NumberError" class="validErr"></span>
                 </div>
                 <div class="member-role">
@@ -84,7 +79,7 @@
                 </div>
                 <div class="member-url">
                     <label class="member-info">Photo(URL):</label>
-                    <input type="text" class="member-info-input" id="memberUrlinput" type="url">
+                    <input type="url" class="member-info-input" id="memberUrlinput" type="url">
                     <span id="urlError" class="validErr"></span>
                 </div>
                 <div class="member-image" id="memberImage">
@@ -114,11 +109,9 @@
         </div>
 
 
-        <div class="modal-select-container">
-            <div class="modal-select">
-                <div class="select">
-                    <h2 class="select-heading">select worker to assign</h2>
-                </div>
+        <div class="modal-select-container" id="modalSelectContainer">
+            <div class="modal-select" id="modalSelect">
+                
 
             </div>
         </div>
