@@ -32,7 +32,7 @@ let currentRole = document.getElementById("currentRole")
 let memberImage = document.getElementById("memberImage")
 let dateStart
 let dateEnd
-let memberCompany=""
+let memberCompany
 let membersContainer = document.getElementById("membersContainer")
 let modalWorker = document.getElementById("modalWorker")
 let modalWorkerContainer = document.getElementById("modalWorkerContainer")
@@ -195,6 +195,12 @@ function clearInputs() {
             input.value = ""
         })
     })
+    if (memberCompany) {
+        errorStartSpan.forEach((err) => {
+            err.textContent = ""
+        })
+    }
+
 
 
 
@@ -210,22 +216,12 @@ function appendImage2() {
     memberImage.innerHTML = template
 }
 function dateCheck() {
-    if (memberCompany) {
 
-        if (dateStart.value && dateEnd.value) {
-            let start = new Date(dateStart.value)
-            let end = new Date(dateEnd.value)
-            if (start > end) {
-                errorStartSpan.forEach((err) => {
-                    err.textContent = "invalid date"
-                })
-                return false
-            }
-            else {
-                return true
-            }
-        }
-        else if (!dateStart.value || !dateEnd.value) {
+
+    if (dateStart.value && dateEnd.value) {
+        let start = new Date(dateStart.value)
+        let end = new Date(dateEnd.value)
+        if (start > end) {
             errorStartSpan.forEach((err) => {
                 err.textContent = "invalid date"
             })
@@ -235,9 +231,17 @@ function dateCheck() {
             return true
         }
     }
+    else if (!dateStart.value || !dateEnd.value) {
+        errorStartSpan.forEach((err) => {
+            err.textContent = "invalid date"
+        })
+        return false
+    }
     else {
         return true
     }
+
+
 
 }
 let member
@@ -278,9 +282,9 @@ function memberInContainer() {
                  </div>   
                 `
         if (employés[id - 1].experiences.length > 0) {
-            
+
             for (let i = 0; i < employés[id - 1].experiences.length; i++) {
-                if (employés[id - 1].experiences[i].company!="") {
+                if (employés[id - 1].experiences[i].company != "") {
                     template += `<label class="member-info">experience</label>`
                     template += `<div class="experiences-div">
                     
@@ -430,17 +434,17 @@ function appInit() {
         emailCheck()
         numberCheck()
         regexCheck()
-        dateCheck()
-        if (memberCompany.value) {
+        // dateCheck()
+        if (memberCompany) {
             if (regexCheck() && dateCheck()) {
-                console.log(memberCompany)
                 saveEmployesExp()
                 count++
                 appendImage2()
                 clearInputs()
                 memberInContainer()
                 closeModal(addModal)
-                console.log(memberCompany)
+                memberCompany=""
+
 
             }
         }
