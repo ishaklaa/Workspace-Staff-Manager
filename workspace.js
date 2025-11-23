@@ -43,7 +43,8 @@ let closeMelectModal = document.getElementById("closeMelectModal")
 const nameRegex = /^[A-Za-z\s]+$/;
 const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})(\/.*)?$/;
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-const numberRegex = /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/
+const numberRegex = /^0[1-9]{9}$/
+
 
 let employés = []
 let count = 1
@@ -184,10 +185,7 @@ function clearInputs() {
     errorUrlSpan.textContent = ""
     errorEmailSpan.textContent = ""
     errorNumberSpan.textContent = ""
-    // errorStartSpan.forEach((err) => {
-    //     err.textContent = ""
-    // })
-    // memberCompanyRole.value = ""
+    
     url.value = ""
     expsContainer.forEach((div) => {
         let inputs = div.querySelectorAll('.member-info-input');
@@ -430,7 +428,7 @@ function limitations(e, btn) {
     }
 
 
-};
+}
 
 function confereceRoom() {
     roomButton.forEach(btn => {
@@ -444,7 +442,7 @@ function confereceRoom() {
             let newArray = employés.filter(emp => {
                 return rooms(btn.parentElement.id).includes(emp.role)
             })
-            console.log(newArray)
+            
 
             newArray.forEach((emp) => {
                 if (!emp.inRomme) {
@@ -488,8 +486,7 @@ function confereceRoom() {
                         close
                     </button>`
             modalSelect.appendChild(closee)
-            console.log(btn.parentElement.id);
-            console.log(btn);
+            
 
         })
 
@@ -502,7 +499,7 @@ function appInit() {
     })
     appendImage()
     expButton.addEventListener("click", () => {
-        console.log("hello")
+        
         experienceDiv()
     })
     addWorkerForm.addEventListener("submit", (e) => {
@@ -538,12 +535,12 @@ function appInit() {
                 console.log(memberCompany)
             }
         }
-        console.log(employés)
+        
     })
     closeAddModal.addEventListener("click", () => {
         closeModal(addModal)
     })
     confereceRoom()
-    // memberFullinfos()
+    
 }
 appInit()
