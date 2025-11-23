@@ -358,6 +358,47 @@ function rooms(room) {
     return roomWhereIam
 }
 
+
+function limitations(e, num, btn) {
+    if ("Conference" == `${e}` && btn.parentElement.children.length >= 5) {
+        btn.style.display = "none"
+    }
+    if("Conference" == `${e}` && btn.parentElement.children.length < 5) {
+        btn.style.display = "inline-block"
+    }
+    if ("Archives" == `${e}` && btn.parentElement.children.length >= 3) {
+        btn.style.display = "none"
+    }
+    if("Archives" == `${e}` && btn.parentElement.children.length < 3) {
+        btn.style.display = "inline-block"
+    }
+    if ("Staff" == `${e}` && btn.parentElement.children.length >= 4) {
+        btn.style.display = "none"
+    }
+    if("Staff" == `${e}` && btn.parentElement.children.length < 4) {
+        btn.style.display = "inline-block"
+    }
+    if ("Reception" == `${e}` && btn.parentElement.children.length >= 5) {
+        btn.style.display = "none"
+    }
+    if("Reception" == `${e}` && btn.parentElement.children.length < 5) {
+        btn.style.display = "inline-block"
+    }
+    if ("Security" == `${e}` && btn.parentElement.children.length >= 3) {
+        btn.style.display = "none"
+    }
+    if("Security" == `${e}` && btn.parentElement.children.length < 3) {
+        btn.style.display = "inline-block"
+    }
+    if ("Server" == `${e}` && btn.parentElement.children.length >= 3) {
+        btn.style.display = "none"
+    }
+    if("Server" == `${e}` && btn.parentElement.children.length < 3) {
+        btn.style.display = "inline-block"
+    }
+
+};
+
 function confereceRoom() {
     roomButton.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -388,17 +429,19 @@ function confereceRoom() {
                     template.addEventListener('click', () => {
                         console.log('hello')
                         emp.inRomme = true
-                        
+
                         let room = document.getElementById(btn.parentElement.id)
                         room.appendChild(template)
+                        closeModal(modalSelectContainer)
+                        limitations(btn.parentElement.id, 2, btn)
+
                         const child = document.getElementById(emp.id)
                         membersContainer.removeChild(child)
-
-
                         template.addEventListener('click', () => {
                             emp.inRomme = false
                             modalSelect.appendChild(template)
                             membersContainer.appendChild(child)
+                            limitations(btn.parentElement.id, 2, btn)
                         })
 
                     })
@@ -406,13 +449,19 @@ function confereceRoom() {
 
                 }
 
+
             })
             let closee = document.createElement('div')
             closee.innerHTML = `<button type="button" class="modal-ajout-buttons" id="closeMelectModal" onclick="closeModal(modalSelectContainer)">
                         close
                     </button>`
             modalSelect.appendChild(closee)
+            console.log(btn.parentElement.id);
+            console.log(btn);
+
         })
+
+
     })
 }
 function appInit() {
@@ -441,7 +490,7 @@ function appInit() {
                 clearInputs()
                 memberInContainer()
                 closeModal(addModal)
-                memberCompany=""
+                memberCompany = ""
 
 
             }

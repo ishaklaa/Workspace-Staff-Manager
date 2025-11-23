@@ -45,7 +45,7 @@ h1 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
+    overflow-y: auto;
     align-items: center;
     height: 200px;
     width: 400px;
@@ -56,6 +56,7 @@ h1 {
 }
 
 .servers {
+    overflow-y: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,6 +71,7 @@ h1 {
 }
 
 .security {
+    overflow-y: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,6 +86,7 @@ h1 {
 }
 
 .reception {
+    overflow-y: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,6 +101,7 @@ h1 {
 }
 
 .staff {
+    overflow-y: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,6 +116,7 @@ h1 {
 }
 
 .vault {
+    overflow-y: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -137,6 +142,8 @@ h1 {
     width: 30%;
     /* height: 90%; */
     padding-top: 30px;
+    /* padding-left:5px ;
+    padding-right: 5px; */
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -218,10 +225,10 @@ h1 {
 
 }
 
-.member-info {
+/* .member-info {
     font-size: 20px;
     color: #664c32;
-}
+} */
 
 .member-image img {
     height: 60px;
@@ -440,7 +447,7 @@ h1 {
 
     .member-infoo {
         font-size: 10px;
-        
+
     }
 
     .member-img-in-room {
@@ -448,7 +455,7 @@ h1 {
         width: 25px;
         border-radius: 50%;
         display: none;
-        
+
     }
 
     .main_div {
@@ -504,10 +511,12 @@ h1 {
     .member-infoo {
         font-size: 15px;
     }
+
     .member-img-in-room {
         height: 30px;
         width: 30px;
         border-radius: 50%;
+        display: none;
     }
 
     .members-container {
