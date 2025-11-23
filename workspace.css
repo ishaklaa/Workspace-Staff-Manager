@@ -286,7 +286,7 @@ h1 {
 
     box-shadow: 0px 0px 20px 2px #070504;
     border-radius: 10px;
-    height: auto;
+    height: 80%;
     width: 30vw;
     overflow-x: hidden;
     display: flex;
@@ -319,9 +319,9 @@ h1 {
     background-image: url(./images/Gemini_Generated_Image_wt4iqrwt4iqrwt4i\ 222.png);
     box-shadow: 0px 0px 20px 2px #070504;
     border-radius: 10px;
-    height: auto;
+    height: 80%;
     width: 30vw;
-
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     padding: 30px;
@@ -439,9 +439,7 @@ h1 {
         width: 189px;
     }
 
-    .modal-select {
-        height: 80%;
-    }
+    
 
 
 }
