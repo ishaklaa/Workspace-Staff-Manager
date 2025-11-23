@@ -32,7 +32,7 @@ let currentRole = document.getElementById("currentRole")
 let memberImage = document.getElementById("memberImage")
 let dateStart
 let dateEnd
-let memberCompany
+let memberCompany=""
 let membersContainer = document.getElementById("membersContainer")
 let modalWorker = document.getElementById("modalWorker")
 let modalWorkerContainer = document.getElementById("modalWorkerContainer")
@@ -172,6 +172,7 @@ function saveEmployesExp() {
         experiences.push(experience)
     })
     employésInfos.experiences = experiences
+
 }
 function clearInputs() {
     currentRole.value = ""
@@ -210,6 +211,7 @@ function appendImage2() {
 }
 function dateCheck() {
     if (memberCompany) {
+
         if (dateStart.value && dateEnd.value) {
             let start = new Date(dateStart.value)
             let end = new Date(dateEnd.value)
@@ -240,7 +242,7 @@ function dateCheck() {
 }
 let member
 function memberInContainer() {
-    
+
     let template = document.createElement('div')
     template.className = "member-in-container"
     template.setAttribute("id", `${count - 1}`)
@@ -276,9 +278,11 @@ function memberInContainer() {
                  </div>   
                 `
         if (employés[id - 1].experiences.length > 0) {
-            template += `<label class="member-info">experience</label>`
+            
             for (let i = 0; i < employés[id - 1].experiences.length; i++) {
-                template += `<div class="experiences-div">
+                if (employés[id - 1].experiences[i].company!="") {
+                    template += `<label class="member-info">experience</label>`
+                    template += `<div class="experiences-div">
                     
                     <h4>Company: ${employés[id - 1].experiences[i].company}</h4>
                     <h4>Role: ${employés[id - 1].experiences[i].role}</h4>
@@ -286,7 +290,8 @@ function memberInContainer() {
                     <h4>End: ${employés[id - 1].experiences[i].dateend}</h4>
                 </div>
                                 
-                `
+                `}
+
             }
             template += `<button type="button" class="modal-ajout-buttons" id="closeMemberModal" onclick="closeModal(modalWorkerContainer)">
                         close
@@ -379,19 +384,19 @@ function confereceRoom() {
                     template.addEventListener('click', () => {
                         console.log('hello')
                         emp.inRomme = true
-                       
+
                         let room = document.getElementById(btn.parentElement.id)
                         room.appendChild(template)
                         const child = document.getElementById(emp.id)
                         membersContainer.removeChild(child)
 
 
-                        template.addEventListener('click',()=>{
+                        template.addEventListener('click', () => {
                             emp.inRomme = false
                             modalSelect.appendChild(template)
                             membersContainer.appendChild(child)
                         })
-                    
+
                     })
 
 
@@ -426,14 +431,17 @@ function appInit() {
         numberCheck()
         regexCheck()
         dateCheck()
-        if (memberCompany) {
+        if (memberCompany.value) {
             if (regexCheck() && dateCheck()) {
+                console.log(memberCompany)
                 saveEmployesExp()
                 count++
                 appendImage2()
                 clearInputs()
                 memberInContainer()
                 closeModal(addModal)
+                console.log(memberCompany)
+
             }
         }
         else {
@@ -444,6 +452,7 @@ function appInit() {
                 clearInputs()
                 memberInContainer()
                 closeModal(addModal)
+                console.log(memberCompany)
             }
         }
         console.log(employés)
