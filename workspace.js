@@ -359,43 +359,76 @@ function rooms(room) {
 }
 
 
-function limitations(e, num, btn) {
+function limitations(e, btn) {
     if ("Conference" == `${e}` && btn.parentElement.children.length >= 5) {
         btn.style.display = "none"
     }
-    if("Conference" == `${e}` && btn.parentElement.children.length < 5) {
+    if ("Conference" == `${e}` && btn.parentElement.children.length < 5) {
+
         btn.style.display = "inline-block"
     }
+    
     if ("Archives" == `${e}` && btn.parentElement.children.length >= 3) {
         btn.style.display = "none"
     }
-    if("Archives" == `${e}` && btn.parentElement.children.length < 3) {
+    if ("Archives" == `${e}` && btn.parentElement.children.length < 3) {
         btn.style.display = "inline-block"
+    }
+    if ("Archives" == `${e}` && btn.parentElement.children.length > 1) {
+        btn.parentElement.style.border = 0
+    }
+    if ("Archives" == `${e}` && btn.parentElement.children.length <= 1) {
+        btn.parentElement.style.border = "solid"
+        btn.parentElement.style.borderColor = "red"
     }
     if ("Staff" == `${e}` && btn.parentElement.children.length >= 4) {
         btn.style.display = "none"
     }
-    if("Staff" == `${e}` && btn.parentElement.children.length < 4) {
+    if ("Staff" == `${e}` && btn.parentElement.children.length < 4) {
         btn.style.display = "inline-block"
     }
+    
     if ("Reception" == `${e}` && btn.parentElement.children.length >= 5) {
         btn.style.display = "none"
     }
-    if("Reception" == `${e}` && btn.parentElement.children.length < 5) {
+    if ("Reception" == `${e}` && btn.parentElement.children.length < 5) {
         btn.style.display = "inline-block"
+    }
+    if ("Reception" == `${e}` && btn.parentElement.children.length > 1) {
+        btn.parentElement.style.border = 0
+    }
+    if ("Reception" == `${e}` && btn.parentElement.children.length <= 1) {
+        btn.parentElement.style.border = "solid"
+        btn.parentElement.style.borderColor = "red"
     }
     if ("Security" == `${e}` && btn.parentElement.children.length >= 3) {
         btn.style.display = "none"
     }
-    if("Security" == `${e}` && btn.parentElement.children.length < 3) {
+    if ("Security" == `${e}` && btn.parentElement.children.length < 3) {
         btn.style.display = "inline-block"
+    }
+    if ("Security" == `${e}` && btn.parentElement.children.length > 1) {
+        btn.parentElement.style.border = 0
+    }
+    if ("Security" == `${e}` && btn.parentElement.children.length <= 1) {
+        btn.parentElement.style.border = "solid"
+        btn.parentElement.style.borderColor = "red"
     }
     if ("Server" == `${e}` && btn.parentElement.children.length >= 3) {
         btn.style.display = "none"
     }
-    if("Server" == `${e}` && btn.parentElement.children.length < 3) {
+    if ("Server" == `${e}` && btn.parentElement.children.length < 3) {
         btn.style.display = "inline-block"
     }
+    if ("Server" == `${e}` && btn.parentElement.children.length > 1) {
+        btn.parentElement.style.border = 0
+    }
+    if ("Server" == `${e}` && btn.parentElement.children.length <= 1) {
+        btn.parentElement.style.border = "solid"
+        btn.parentElement.style.borderColor = "red"
+
+    }
+
 
 };
 
@@ -429,11 +462,10 @@ function confereceRoom() {
                     template.addEventListener('click', () => {
                         console.log('hello')
                         emp.inRomme = true
-
                         let room = document.getElementById(btn.parentElement.id)
                         room.appendChild(template)
                         closeModal(modalSelectContainer)
-                        limitations(btn.parentElement.id, 2, btn)
+                        limitations(btn.parentElement.id, btn)
 
                         const child = document.getElementById(emp.id)
                         membersContainer.removeChild(child)
@@ -441,7 +473,7 @@ function confereceRoom() {
                             emp.inRomme = false
                             modalSelect.appendChild(template)
                             membersContainer.appendChild(child)
-                            limitations(btn.parentElement.id, 2, btn)
+                            limitations(btn.parentElement.id, btn)
                         })
 
                     })
