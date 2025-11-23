@@ -288,7 +288,7 @@ h1 {
     border-radius: 10px;
     height: 80%;
     width: 30vw;
-    overflow-x: hidden;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     padding: 30px;
@@ -342,6 +342,10 @@ h1 {
     gap: 5px;
     margin-bottom: 10px;
 }
+.member-in-container:hover {
+    background-color: #a47c53;
+}
+
 
 .member-name-in-container {
     display: flex;
