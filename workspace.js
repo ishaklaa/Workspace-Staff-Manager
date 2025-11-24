@@ -32,7 +32,7 @@ let currentRole = document.getElementById("currentRole")
 let memberImage = document.getElementById("memberImage")
 let dateStart
 let dateEnd
-let memberCompany 
+let memberCompany
 let membersContainer = document.getElementById("membersContainer")
 let modalWorker = document.getElementById("modalWorker")
 let modalWorkerContainer = document.getElementById("modalWorkerContainer")
@@ -142,13 +142,12 @@ function experienceDiv() {
     expsContainer = document.querySelectorAll(".experiences-container")
     memberCompany = document.getElementById("memberCompany")
 
-    template.querySelector('#closeExp').addEventListener('click',(e)=>{
+    template.querySelector('#closeExp').addEventListener('click', (e) => {
         e.target.parentElement.remove()
         memberCompany = null
-        
-        
+        template.innerHTML = ''
     })
-    
+
 
 }
 
@@ -177,13 +176,15 @@ function saveEmployesExp() {
         let inputs = div.querySelectorAll('.member-info-input');
         let experience = {}
         inputs.forEach((input) => {
-            
+
             experience[input.name] = input.value
         })
         experiences.push(experience)
     })
     employésInfos.experiences = experiences
-    
+
+
+
 
 }
 function clearInputs() {
@@ -196,7 +197,7 @@ function clearInputs() {
     errorUrlSpan.textContent = ""
     errorEmailSpan.textContent = ""
     errorNumberSpan.textContent = ""
-    
+
     url.value = ""
     expsContainer.forEach((div) => {
         let inputs = div.querySelectorAll('.member-info-input');
@@ -240,7 +241,7 @@ function dateCheck() {
             return true
         }
     }
-    else if (!dateStart.value || !dateEnd.value ) {
+    else if (!dateStart.value || !dateEnd.value) {
         errorStartSpan.forEach((err) => {
             err.textContent = "invalid date"
         })
@@ -289,7 +290,7 @@ function memberInContainer() {
         if (employés[id - 1].experiences.length > 0) {
 
             for (let i = 0; i < employés[id - 1].experiences.length; i++) {
-                if (employés[id - 1].experiences[i].company != "") {
+                if (employés[id - 1].experiences[i].company) {
                     template += `<label class="member-info">experience</label>`
                     template += `<div class="experiences-div">
                     
@@ -370,7 +371,7 @@ function limitations(e, btn) {
 
         btn.style.display = "inline-block"
     }
-    
+
     if ("Archives" == `${e}` && btn.parentElement.children.length >= 3) {
         btn.style.display = "none"
     }
@@ -381,7 +382,7 @@ function limitations(e, btn) {
         btn.parentElement.style.border = 0
     }
     if ("Archives" == `${e}` && btn.parentElement.children.length <= 1) {
-        btn.parentElement.style.border = "solid"
+        btn.parentElement.style.border= "2px  solid"
         btn.parentElement.style.borderColor = "red"
     }
     if ("Staff" == `${e}` && btn.parentElement.children.length >= 4) {
@@ -390,7 +391,7 @@ function limitations(e, btn) {
     if ("Staff" == `${e}` && btn.parentElement.children.length < 4) {
         btn.style.display = "inline-block"
     }
-    
+
     if ("Reception" == `${e}` && btn.parentElement.children.length >= 5) {
         btn.style.display = "none"
     }
@@ -401,7 +402,7 @@ function limitations(e, btn) {
         btn.parentElement.style.border = 0
     }
     if ("Reception" == `${e}` && btn.parentElement.children.length <= 1) {
-        btn.parentElement.style.border = "solid"
+        btn.parentElement.style.border = "2px  solid"
         btn.parentElement.style.borderColor = "red"
     }
     if ("Security" == `${e}` && btn.parentElement.children.length >= 3) {
@@ -414,7 +415,7 @@ function limitations(e, btn) {
         btn.parentElement.style.border = 0
     }
     if ("Security" == `${e}` && btn.parentElement.children.length <= 1) {
-        btn.parentElement.style.border = "solid"
+        btn.parentElement.style.border = "2px  solid"
         btn.parentElement.style.borderColor = "red"
     }
     if ("Server" == `${e}` && btn.parentElement.children.length >= 3) {
@@ -427,7 +428,7 @@ function limitations(e, btn) {
         btn.parentElement.style.border = 0
     }
     if ("Server" == `${e}` && btn.parentElement.children.length <= 1) {
-        btn.parentElement.style.border = "solid"
+        btn.parentElement.style.border = "2px  solid"
         btn.parentElement.style.borderColor = "red"
 
     }
@@ -446,11 +447,11 @@ function confereceRoom() {
             let newArray = employés.filter(emp => {
                 return rooms(btn.parentElement.id).includes(emp.role)
             })
-            
+
 
             newArray.forEach((emp) => {
                 if (!emp.inRomme) {
-                    
+
                     let template = document.createElement('div')
                     template.className = "member-in-container"
                     template.setAttribute("id", `${emp.id}`)
@@ -459,15 +460,15 @@ function confereceRoom() {
                         <label class="member-infoo">${emp.namee}</label>
                         <h4 class="member-infoo">${emp.role}</h4>
                     </div>`
-                    
+
                     modalSelect.appendChild(template)
-                    template.addEventListener('click', () => {                      
+                    template.addEventListener('click', () => {
                         emp.inRomme = true
                         let room = document.getElementById(btn.parentElement.id)
                         room.appendChild(template)
                         closeModal(modalSelectContainer)
                         limitations(btn.parentElement.id, btn)
-                        
+
                         const child = document.getElementById(emp.id)
                         membersContainer.removeChild(child)
                         template.addEventListener('click', () => {
@@ -475,7 +476,7 @@ function confereceRoom() {
                             modalSelect.appendChild(template)
                             membersContainer.appendChild(child)
                             limitations(btn.parentElement.id, btn)
-                            
+
                         })
 
                     })
@@ -490,7 +491,7 @@ function confereceRoom() {
                         close
                     </button>`
             modalSelect.appendChild(closee)
-            
+
 
         })
 
@@ -503,7 +504,7 @@ function appInit() {
     })
     appendImage()
     expButton.addEventListener("click", () => {
-        
+
         experienceDiv()
     })
     addWorkerForm.addEventListener("submit", (e) => {
@@ -514,10 +515,10 @@ function appInit() {
         emailCheck()
         numberCheck()
         regexCheck()
-        
+
         if (memberCompany) {
-            
-            
+
+
             if (regexCheck() && dateCheck()) {
                 saveEmployesExp()
                 count++
@@ -525,27 +526,30 @@ function appInit() {
                 clearInputs()
                 memberInContainer()
                 closeModal(addModal)
-                
+
             }
         }
         else {
-            
+
             if (regexCheck()) {
+                
                 saveEmployesExp()
                 count++
                 appendImage2()
                 clearInputs()
                 memberInContainer()
                 closeModal(addModal)
-                
+
             }
         }
-        
+
+        console.log(employés)
+
     })
     closeAddModal.addEventListener("click", () => {
         closeModal(addModal)
     })
     confereceRoom()
-    
+
 }
 appInit()
