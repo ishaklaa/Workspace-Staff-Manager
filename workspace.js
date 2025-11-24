@@ -14,7 +14,7 @@ const errorUrlSpan = document.getElementById("urlError")
 const errorEmailSpan = document.getElementById("EmailError")
 const errorNumberSpan = document.getElementById("NumberError")
 let errorStartSpan
-// const errorEndSpan = document.getElementById("dateEndErr")
+
 const namee = document.getElementById("memberNameInput")
 const url = document.getElementById("memberUrlinput")
 const Email = document.getElementById('memberEmilInput')
@@ -27,12 +27,12 @@ const modalSelectContainer = document.getElementById("modalSelectContainer")
 
 
 let expsContainer = document.querySelectorAll(".experiences-container")
-// let ExperienceRole = document.querySelectorAll("#ExperienceRole")
+
 let currentRole = document.getElementById("currentRole")
 let memberImage = document.getElementById("memberImage")
 let dateStart
 let dateEnd
-let memberCompany
+let memberCompany 
 let membersContainer = document.getElementById("membersContainer")
 let modalWorker = document.getElementById("modalWorker")
 let modalWorkerContainer = document.getElementById("modalWorkerContainer")
@@ -45,7 +45,7 @@ const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})(\/.*)?$/;
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 const numberRegex = /^0[1-9]{9}$/
 
-
+let member
 let employés = []
 let count = 1
 
@@ -131,7 +131,7 @@ function experienceDiv() {
                     <label class="member-info">end:</label>
                     <input name="dateend" type="date" class="member-info-input" id="dateEnd">
                     <span id="dateStartErr" class="validErr"></span>
-                    <button class="modal-ajout-buttons" onclick="return this.parentNode.remove()" >close</button>
+                    <button class="modal-ajout-buttons" id="closeExp"  >close</button>
 
                 `
 
@@ -142,7 +142,17 @@ function experienceDiv() {
     expsContainer = document.querySelectorAll(".experiences-container")
     memberCompany = document.getElementById("memberCompany")
 
+    template.querySelector('#closeExp').addEventListener('click',(e)=>{
+        e.target.parentElement.remove()
+        memberCompany = null
+        
+        
+    })
+    
+
 }
+
+
 function saveEmployesExp() {
     let employésInfos = {
         inRomme: false,
@@ -167,12 +177,13 @@ function saveEmployesExp() {
         let inputs = div.querySelectorAll('.member-info-input');
         let experience = {}
         inputs.forEach((input) => {
-            console.log(input);
+            
             experience[input.name] = input.value
         })
         experiences.push(experience)
     })
     employésInfos.experiences = experiences
+    
 
 }
 function clearInputs() {
@@ -229,7 +240,7 @@ function dateCheck() {
             return true
         }
     }
-    else if (!dateStart.value || !dateEnd.value) {
+    else if (!dateStart.value || !dateEnd.value ) {
         errorStartSpan.forEach((err) => {
             err.textContent = "invalid date"
         })
@@ -238,11 +249,7 @@ function dateCheck() {
     else {
         return true
     }
-
-
-
 }
-let member
 function memberInContainer() {
 
     let template = document.createElement('div')
@@ -355,8 +362,6 @@ function rooms(room) {
     const roomWhereIam = accessToRooms[room]
     return roomWhereIam
 }
-
-
 function limitations(e, btn) {
     if ("Conference" == `${e}` && btn.parentElement.children.length >= 5) {
         btn.style.display = "none"
@@ -429,7 +434,6 @@ function limitations(e, btn) {
 
 
 }
-
 function confereceRoom() {
     roomButton.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -446,7 +450,7 @@ function confereceRoom() {
 
             newArray.forEach((emp) => {
                 if (!emp.inRomme) {
-                    console.log(emp)
+                    
                     let template = document.createElement('div')
                     template.className = "member-in-container"
                     template.setAttribute("id", `${emp.id}`)
@@ -455,16 +459,15 @@ function confereceRoom() {
                         <label class="member-infoo">${emp.namee}</label>
                         <h4 class="member-infoo">${emp.role}</h4>
                     </div>`
-                    console.log(template)
+                    
                     modalSelect.appendChild(template)
-                    template.addEventListener('click', () => {
-                        console.log('hello')
+                    template.addEventListener('click', () => {                      
                         emp.inRomme = true
                         let room = document.getElementById(btn.parentElement.id)
                         room.appendChild(template)
                         closeModal(modalSelectContainer)
                         limitations(btn.parentElement.id, btn)
-
+                        
                         const child = document.getElementById(emp.id)
                         membersContainer.removeChild(child)
                         template.addEventListener('click', () => {
@@ -472,6 +475,7 @@ function confereceRoom() {
                             modalSelect.appendChild(template)
                             membersContainer.appendChild(child)
                             limitations(btn.parentElement.id, btn)
+                            
                         })
 
                     })
@@ -510,8 +514,10 @@ function appInit() {
         emailCheck()
         numberCheck()
         regexCheck()
-        // dateCheck()
+        
         if (memberCompany) {
+            
+            
             if (regexCheck() && dateCheck()) {
                 saveEmployesExp()
                 count++
@@ -519,12 +525,11 @@ function appInit() {
                 clearInputs()
                 memberInContainer()
                 closeModal(addModal)
-                memberCompany = ""
-
-
+                
             }
         }
         else {
+            
             if (regexCheck()) {
                 saveEmployesExp()
                 count++
@@ -532,7 +537,7 @@ function appInit() {
                 clearInputs()
                 memberInContainer()
                 closeModal(addModal)
-                console.log(memberCompany)
+                
             }
         }
         
