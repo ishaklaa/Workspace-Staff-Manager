@@ -20,14 +20,12 @@ const url = document.getElementById("memberUrlinput")
 const Email = document.getElementById('memberEmilInput')
 const PNumber = document.getElementById('memberNumberInput')
 const roomButton = document.querySelectorAll("#roomButton")
-
 const modalSelect = document.getElementById("modalSelect")
 const modalSelectContainer = document.getElementById("modalSelectContainer")
 
 
 
 let expsContainer = document.querySelectorAll(".experiences-container")
-
 let currentRole = document.getElementById("currentRole")
 let memberImage = document.getElementById("memberImage")
 let dateStart
@@ -150,8 +148,6 @@ function experienceDiv() {
 
 
 }
-
-
 function saveEmployesExp() {
     let employésInfos = {
         inRomme: false,
@@ -330,11 +326,7 @@ function rooms(room) {
             "autre"
         ],
         "Archives": [
-            "Récepionniste",
-            "Technicien iT",
-            "Agent de sécurité",
             "Manager",
-            "autre"
         ],
         "Staff": [
             "Récepionniste",
@@ -382,7 +374,7 @@ function limitations(e, btn) {
         btn.parentElement.style.border = 0
     }
     if ("Archives" == `${e}` && btn.parentElement.children.length <= 1) {
-        btn.parentElement.style.border= "2px  solid"
+        btn.parentElement.style.border = "2px  solid"
         btn.parentElement.style.borderColor = "red"
     }
     if ("Staff" == `${e}` && btn.parentElement.children.length >= 4) {
@@ -498,27 +490,47 @@ function confereceRoom() {
 
     })
 }
+
+
+function emptyRoom() {
+    let roomtest = document.querySelectorAll(".roomtest")
+    roomtest.forEach((room) => {
+        if (room.children.length == 1) {
+            console.log(room)
+        }
+    })
+
+
+}
+
+function plusExp() {
+
+    let newArray = employés.sort((a, b) => {
+        return a.experiences.length - b.experiences.length
+    })
+    console.log(newArray[newArray.length - 1].namee)
+
+
+}
+
+
+
 function appInit() {
     addButton.addEventListener("click", () => {
         openModal(addModal)
     })
     appendImage()
     expButton.addEventListener("click", () => {
-
         experienceDiv()
     })
     addWorkerForm.addEventListener("submit", (e) => {
         e.preventDefault()
-
         nameCheck()
         urlCheck()
         emailCheck()
         numberCheck()
         regexCheck()
-
         if (memberCompany) {
-
-
             if (regexCheck() && dateCheck()) {
                 saveEmployesExp()
                 count++
@@ -526,25 +538,19 @@ function appInit() {
                 clearInputs()
                 memberInContainer()
                 closeModal(addModal)
-
             }
         }
         else {
-
             if (regexCheck()) {
-                
                 saveEmployesExp()
                 count++
                 appendImage2()
                 clearInputs()
                 memberInContainer()
                 closeModal(addModal)
-
             }
         }
-
         console.log(employés)
-
     })
     closeAddModal.addEventListener("click", () => {
         closeModal(addModal)
